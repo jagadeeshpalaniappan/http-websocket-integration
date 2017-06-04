@@ -1,3 +1,5 @@
+var https = require('https');
+
 exports.handler = (event, context) => {
 
     try {
@@ -27,12 +29,25 @@ exports.handler = (event, context) => {
                 switch (event.request.intent.name) {
                     case "MyFriendsList":
 
-                        context.succeed(
-                            generateResponse(
-                                buildSpeechletResponse(`Roopesh, Pradeep and Abhilash`, true),
-                                {}
-                            )
-                        );
+                        var endpoint = "https://alexa-websocket-integration.herokuapp.com/"; // ENDPOINT GOES HERE
+                        var body = "";
+                        https.get(endpoint, (response) => {
+                            response.on('data', (chunk) => { body += chunk });
+                            response.on('end', () => {
+
+                                var data = JSON.parse(body);
+                                console.log(data.msg);
+
+                                context.succeed(
+                                    generateResponse(
+                                        buildSpeechletResponse(data.msg, true),
+                                        {}
+                                    )
+                                );
+
+                            })
+                        });
+
 
                         break;
 
