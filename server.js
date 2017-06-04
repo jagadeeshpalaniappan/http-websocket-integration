@@ -14,7 +14,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 
 
 app.get('/', function (req, res) {
-    res.send({ msg: "Jagadeesh' Web Socket Connection is Live" });
+    res.send({ msg: "HTTP-Web Socket Connection is Live" });
 });
 
 
