@@ -60,7 +60,7 @@ app.post('/ws', function (req, res) {
 
     wss.broadcast(req.body.msg);
 
-    res.status(200).end();
+    res.status(200).send("SUCCESS");
 });
 
 
