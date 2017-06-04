@@ -56,7 +56,7 @@ app.post('/ws', function (req, res) {
         res.status(400).send("400 Bad Request")
     }
 
-    console.log('1.msg received from alexa : %s', req.body.msg);
+    console.log('1.msg received from http request : %s', req.body.msg);
 
     wss.broadcast(req.body.msg);
 
